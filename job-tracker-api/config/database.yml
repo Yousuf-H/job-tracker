@@ -1,0 +1,36 @@
+# PostgreSQL. Versions 9.3 and up are supported.
+#
+# Install the pg driver:
+#   gem install pg
+# On macOS with Homebrew:
+#   gem install pg -- --with-pg-config=/opt/homebrew/bin/pg_config
+# On Windows:
+#   gem install pg
+#       Choose the win32 build.
+#       Install PostgreSQL and put its /bin directory on your path.
+#
+# Configure Using Gemfile
+# gem "pg"
+#
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  max_connections: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+
+development:
+  <<: *default
+  database: job_tracker_api_development
+  username: postgres
+  password: postgres
+  host: db
+
+test:
+  <<: *default
+  database: job_tracker_api_test
+
+production:
+  <<: *default
+  database: job_tracker_api_production
+  username: job_tracker_api
+  password: <%= ENV["JOB_TRACKER_API_DATABASE_PASSWORD"] %>
