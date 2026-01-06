@@ -10,8 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 0) do
+ActiveRecord::Schema[8.1].define(version: 2026_01_06_012329) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
+  create_table "applications", force: :cascade do |t|
+    t.date "applied_on", null: false
+    t.string "company_name", null: false
+    t.string "contact_email"
+    t.datetime "created_at", null: false
+    t.date "follow_up_on"
+    t.string "job_url"
+    t.date "last_followed_up_on"
+    t.string "next_action"
+    t.text "notes"
+    t.string "role_title", null: false
+    t.string "salary"
+    t.string "status", null: false
+    t.datetime "updated_at", null: false
+    t.index ["applied_on"], name: "index_applications_on_applied_on"
+    t.index ["follow_up_on"], name: "index_applications_on_follow_up_on"
+    t.index ["status"], name: "index_applications_on_status"
+  end
 end
