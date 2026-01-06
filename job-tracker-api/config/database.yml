@@ -23,7 +23,7 @@ development:
   database: job_tracker_api_development
   username: postgres
   password: postgres
-  host: db
+  host: postgres
 
 test:
   <<: *default
